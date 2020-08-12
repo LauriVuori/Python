@@ -13,6 +13,6 @@ for b in boxes.splitlines():
 
 while True:
     cv2.imshow("Stacked", frame)
-    key = cv2.waitKey(1)
+    key = cv2.waitKey(1) 
     if key == 27: #esc
         exit()
