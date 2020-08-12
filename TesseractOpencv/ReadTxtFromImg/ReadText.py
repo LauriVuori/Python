@@ -50,7 +50,7 @@ while True:
     maskrange = cv2.inRange(thresh, g_min, g_max)
     e1 = cv2.getTickCount()
     e2 = cv2.getTickCount()
-    """
+    
     boxes = pytesseract.image_to_boxes(frame)
     for b in boxes.splitlines():
         b = b.split(' ')
@@ -59,7 +59,7 @@ while True:
         x,y,w,h = int(b[1]), int(b[2]), int(b[3]), int(b[4])
         cv2.rectangle(frame,(x,hFrame-y),(w,hFrame-h),(0,0,255),4)
         cv2.putText(frame, b[0], (x, hFrame-y+125), cv2.FONT_HERSHEY_COMPLEX, 5, (50,50,255), 1)
-    """
+    
     StopTime = cv2.getTickCount()
     TimeCounter += 1
     Progtimer += (StopTime-StartTime)/cv2.getTickFrequency()
