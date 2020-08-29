@@ -34,7 +34,7 @@ if Skill == 1:
         lower = np.array([h_min,s_min,v_min])
         upper = np.array([h_max, s_max, v_max])
         mask = cv2.inRange(frame,lower,upper)
-        contours, hierarchy = cv2.findContours(mask, )
+        # contours, hierarchy = cv2.findContours(mask, )
         
         cv2.imshow("test", frame)
         cv2.imshow("t", mask)
