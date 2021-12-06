@@ -27,6 +27,7 @@ class csv_class:
     def __init__(self, filename="example.csv", delimeter=";"):
         self.filename = filename
         self.delimeter = delimeter
+        self.__open_ifnot_create_csv()
 
     def set_filename(self, filename):
         self.filename = filename
@@ -34,9 +35,13 @@ class csv_class:
     def get_filename(self):
         print("Current file name is: " + self.filename)
     
-    def create_csv(self):
-        new_file = open(self.filename, "wb")
-        print("Created file: " + new_file.name)
+    def __open_ifnot_create_csv(self):
+        try:
+            new_file = open(self.filename, "r")
+            print("File found", self.filename)
+        except FileNotFoundError:
+            new_file = open(self.filename, "wb")
+            print("Created file: ", new_file.name)
         new_file.close()
         # with open(self.filename, "wb") as csvfile:
             
@@ -46,5 +51,5 @@ class csv_class:
 # ...         print(', '.join(row))
 
 test = csv_class()
-test.create_csv()
+
 
