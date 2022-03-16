@@ -1,7 +1,19 @@
+from distutils.log import error
 import cv2
 from cv2 import compare
 import numpy as np
 import Func
+import serial
+import serial.tools.list_ports as ls 
+print([p.device for p in ls.comports()])
+
+ser = serial.Serial('COM4', 115200)  # open serial port
+
+
+# test = "{111}"
+# sendbytes = test.encode()
+# ser.write(sendbytes)
+# print("string sent:",test)
 
 def empty(x):
     pass
@@ -195,14 +207,19 @@ while True:
     cv2.imshow("Original", frame)
 
     # if (rgb_leds[i] != last_rgb_leds[i]):
-    if (sum(rgb_leds) != sum(last_rgb_leds)):
+    # if (sum(rgb_leds) != sum(last_rgb_leds)):
+    if (rgb_leds != last_rgb_leds):
         counter = counter + 1
-        if (counter > 6):
+        if (counter > 10):
             last_rgb_leds = rgb_leds.copy()
             counter = 0
-            print("UPDATE" + str(last_rgb_leds))
-    # print(str(rgb_leds) + str(last_rgb_leds))
-    # print(counter)
+            print("UPDATE" + str(last_rgb_leds))# sendbytes = test.encode()
+            leds = '{' + str(last_rgb_leds[0]) + str(last_rgb_leds[2]) + str(last_rgb_leds[1]) + '}'
+            sendbytes = leds.encode()
+            ser.write(sendbytes)
+            print("string sent:", leds)
+            # print(str(rgb_leds) + str(last_rgb_leds))
+            # print(counter)
     key = cv2.waitKey(1)
     if key == 27:  # esc
         cap.release()
