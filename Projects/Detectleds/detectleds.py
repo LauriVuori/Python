@@ -1,6 +1,4 @@
-from distutils.log import error
 import cv2
-from cv2 import compare
 import numpy as np
 import Func
 import serial
